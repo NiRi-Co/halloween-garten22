@@ -1,0 +1,9 @@
+version: '3'
+services:
+  frontend:
+    build: ./frontend
+    networks:
+      - hg-net
+
+networks:
+  hg-net
