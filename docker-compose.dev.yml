@@ -7,7 +7,8 @@ services:
     networks:
       - hg-net-dev
     volumes:
-      - ./frontend:/usr/src/app
+      - ./frontend:/home/node/app
+      - /home/node/app/node_modules
     ports:
       - "3000:3000"
 
@@ -18,9 +19,14 @@ services:
     networks:
       - hg-net-dev
     volumes:
-      - ./api:/usr/src/app
+      - ./api:/home/node/app
+      - /home/node/app/node_modules
     ports:
       - "4000:4000"
 
 networks:
   hg-net-dev:
+
+volumes:
+  api_modules:
+  frontend_modules:
