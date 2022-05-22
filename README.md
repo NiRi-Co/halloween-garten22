@@ -1,6 +1,6 @@
 # halloween-garten22
 
-Created for the Halloween Garten 2022 and the ongoing years.
+Created for the Halloween Garten 2022 and the ongoing years
 
 ## frontend
 - TypeScript
