@@ -1,21 +1,21 @@
 <template>
     <main class="container mx-auto flex h-screen">
-        <div class="bg-gray-700 text-white m-auto py-24 px-24 rounded">
+        <div class="bg-gray-700 text-white m-auto py-24 px-24 rounded shadow-2xl">
             <h2 class="text-4xl mb-6">Login</h2>
             <div v-if="!auth.isLoggedIn()">
                 <form class="m-auto text" action="">
                     <div>
                         <label for="username">Username:</label>
-                        <input id="username" v-model="username" class="ml-4 p-1 border-solid rounded text-black"
+                        <input id="username" v-model="username" class="ml-4 p-1 border-solid rounded text-black shadow-md"
                             type="text">
                     </div>
                     <div class="mt-4">
                         <label for="password">Password:</label>
-                        <input id="password" v-model="password" class="ml-4 p-1 border-solid rounded text-black"
+                        <input id="password" v-model="password" class="ml-4 p-1 border-solid rounded text-black shadow-md"
                             type="password">
                     </div>
                 </form>
-                <button class="mt-6 py-3 px-5 bg-gray-500 hover:bg-gray-600 rounded duration-200"
+                <button class="mt-6 py-3 px-5 bg-gray-500 hover:bg-gray-600 rounded duration-200 shadow-md"
                     @click="login()">Login</button>
                 <div v-if="auth_msg == false" class="bg-red-500 mt-4 p-3 rounded max-w-max">There was an error. Please
                     try again</div>
