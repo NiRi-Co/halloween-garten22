@@ -1,0 +1,66 @@
+<template>
+    <main class="container mx-auto flex h-screen">
+        <div class="bg-gray-700 text-white m-auto py-24 px-24 rounded">
+            <h2 class="text-4xl mb-6">Login</h2>
+            <div v-if="!auth.isLoggedIn()">
+                <form class="m-auto text" action="">
+                    <div>
+                        <label for="username">Username:</label>
+                        <input id="username" v-model="username" class="ml-4 p-1 border-solid rounded text-black"
+                            type="text">
+                    </div>
+                    <div class="mt-4">
+                        <label for="password">Password:</label>
+                        <input id="password" v-model="password" class="ml-4 p-1 border-solid rounded text-black"
+                            type="password">
+                    </div>
+                </form>
+                <button class="mt-6 py-3 px-5 bg-gray-500 hover:bg-gray-600 rounded duration-200"
+                    @click="login()">Login</button>
+                <div v-if="auth_msg == false" class="bg-red-500 mt-4 p-3 rounded max-w-max">There was an error. Please
+                    try again</div>
+            </div>
+            <div v-else class="p-5 bg-green-600 rounded">
+                Logged in
+            </div>
+        </div>
+
+    </main>
+</template>
+<script setup lang="ts">
+import { ref } from 'vue';
+import axios, { type AxiosRequestConfig } from "axios"
+
+import { useCommonStore } from '@/stores/common';
+import { useAuthStore } from '@/stores/auth';
+const commonStore = useCommonStore()
+const auth = useAuthStore()
+
+const auth_msg = ref();
+
+const password = ref();
+const username = ref();
+
+
+const login = async () => {
+    const options: AxiosRequestConfig = {
+        url: `${commonStore.apiUrl}/auth/login`,
+        method: "POST",
+        data: {
+            username: username.value,
+            password: password.value
+        }
+    }
+    const res = await axios(options).catch((err) => {
+        auth_msg.value = false
+    })
+
+    if (res?.status == 200) {
+        auth.login(res.data.token, res.data.expiresIn)
+    }
+}
+
+</script>
+
+<style>
+</style>
