@@ -17,10 +17,9 @@
                 </form>
                 <button class="mt-6 py-3 px-5 bg-gray-500 hover:bg-gray-600 rounded duration-200 shadow-md"
                     @click="login()">Login</button>
-                <div v-if="auth_msg == false" class="bg-red-500 mt-4 p-3 rounded max-w-max">There was an error. Please
-                    try again</div>
+                <div v-if="auth_msg && auth_msg != true" class="bg-red-500 mt-4 p-3 rounded max-w-max">{{ auth_msg }}</div>
             </div>
-            <div v-else class="p-5 bg-green-600 rounded">
+            <div v-else-if="auth_msg === true" class="p-5 bg-green-600 rounded">
                 Logged in
             </div>
         </div>
@@ -52,11 +51,14 @@ const login = async () => {
         }
     }
     const res = await axios(options).catch((err) => {
-        auth_msg.value = false
+        auth_msg.value = "API reqest error"
     })
 
     if (res?.status == 200) {
         auth.login(res.data.token, res.data.expiresIn)
+        auth_msg.value = true
+    } else if (res?.status == 401) {
+        auth_msg.value = "Wrong username/password"
     }
 }
 
