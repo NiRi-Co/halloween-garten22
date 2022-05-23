@@ -1,6 +1,7 @@
-import dotenv from "dotenv"
-dotenv.config()
+import * as dotenv from "dotenv";
+dotenv.config({ path: __dirname + '/.env' });
 
+require("../genKeys.js")
 import express, { json, urlencoded } from "express"
 import passport from "passport";
 import mongoose from "mongoose";

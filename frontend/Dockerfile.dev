@@ -2,6 +2,8 @@ FROM node:lts-alpine
 
 ENV NODE_ENV=development
 
+RUN apk update && apk add python3 g++ make
+
 WORKDIR /home/node/app
 
 COPY package*.json ./
