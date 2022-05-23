@@ -32,6 +32,9 @@ services:
       - "1002:80"
     networks:
       - hg-net-dev
+    depends_on:
+      - api
+      - frontend
 
 networks:
   hg-net-dev:
