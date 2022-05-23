@@ -5,7 +5,7 @@ import { models } from "mongoose";
 
 const User = models.User
 
-const pathToKey = path.join(__dirname, "..", "id_rsa_pub.pem");
+const pathToKey = path.join(__dirname, "../..", "id_rsa_pub.pem");
 const PUB_KEY = fs.readFileSync(pathToKey, "utf-8");
 
 const options = {
