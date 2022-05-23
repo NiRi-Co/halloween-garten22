@@ -12,8 +12,6 @@ RUN npm install --production=false
 
 COPY . .
 
-RUN node genKeys.js
-
 RUN chown -R node:node /home/node/app
 
 USER node
