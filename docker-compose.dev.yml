@@ -24,5 +24,14 @@ services:
     ports:
       - "4000:4000"
 
+  proxy:
+    build:
+      context: ./proxy
+      dockerfile: Dockerfile
+    ports:
+      - "1002:80"
+    networks:
+      - hg-net-dev
+
 networks:
   hg-net-dev:

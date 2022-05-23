@@ -14,4 +14,4 @@ RUN chown -R node:node /home/node/app
 
 USER node
 
-CMD [ "npm", "run", "dev" ]
+CMD [ "vite", "--host 0.0.0.0" ]
