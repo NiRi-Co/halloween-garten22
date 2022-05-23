@@ -36,5 +36,12 @@ services:
       - api
       - frontend
 
+  nirimata:
+    build:
+      context: ./nirimata
+      dockerfile: Dockerfile.dev
+    networks:
+      - hg-net-dev
+
 networks:
   hg-net-dev:

@@ -1,0 +1,19 @@
+FROM node:lts-alpine
+
+ENV NODE_ENV=development
+
+RUN apk update && apk add python3
+
+WORKDIR /home/node/app
+
+COPY package*.json ./
+
+RUN npm install --production=false
+
+COPY . .
+
+RUN chown -R node:node /home/node/app
+
+USER node
+
+CMD [ "npm", "run", "dev" ]

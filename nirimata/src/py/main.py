@@ -1,0 +1,1 @@
+print("NiRi-Mata is starting up...")
